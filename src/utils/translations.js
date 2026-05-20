@@ -183,7 +183,15 @@ export const translations = {
     val_msg_req: "Message must be at least 10 characters long",
     success_title: "Message Sent Successfully!",
     success_desc: "Thank you for contacting BankDash support team. We've received your query and one of our experts will reach out to you as soon as possible.",
-    return_home: "Return to Home"
+    return_home: "Return to Home",
+
+    // Branch Locator translations
+    branch_locator_tag: "LOCATE OUR BRANCHES",
+    branch_locator_title: "BankDash Branches & ATMs",
+    branch_locator_desc: "Locate your nearest physical branch or automated deposit kiosk with our network finder.",
+    branch_hours: "Working Hours",
+    branch_phone: "Phone Number",
+    branch_view_map: "View on Map"
   },
   hi: {
     // Header/Navigation links
@@ -369,6 +377,14 @@ export const translations = {
     val_msg_req: "संदेश कम से कम 10 वर्णों का होना चाहिए",
     success_title: "संदेश सफलतापूर्वक भेजा गया!",
     success_desc: "बैंकडैश सहायता टीम से संपर्क करने के लिए धन्यवाद। हमें आपका प्रश्न प्राप्त हो गया है और हमारे विशेषज्ञों में से एक जल्द से जल्द आपसे संपर्क करेगा।",
-    return_home: "होम पेज पर वापस जाएं"
+    return_home: "होम पेज पर वापस जाएं",
+
+    // Branch Locator translations
+    branch_locator_tag: "हमारे स्थान",
+    branch_locator_title: "बैंकडैश शाखाएं और एटीएम",
+    branch_locator_desc: "हमारे व्यापक नेटवर्क के साथ अपनी निकटतम शाखा या एटीएम का पता लगाएं।",
+    branch_hours: "कार्य समय",
+    branch_phone: "फ़ोन नंबर",
+    branch_view_map: "मानचित्र पर देखें"
   }
 };

@@ -10,7 +10,9 @@ import {
   User, 
   MessageSquare, 
   Zap, 
-  Globe 
+  Globe,
+  Clock,
+  ChevronRight
 } from 'lucide-react';
 import { useAuth } from '../App';
 import { translations } from '../utils/translations';
@@ -30,6 +32,31 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [activeBranch, setActiveBranch] = useState(0);
+
+  const branches = [
+    {
+      name: language === 'hi' ? 'सैन फ्रांसिस्को मुख्यालय' : 'San Francisco Headquarters',
+      address: '100 Pine St, San Francisco, CA 94111',
+      phone: '+1 (800) 555-0199',
+      hours: 'Mon-Fri: 9:00 AM - 5:00 PM',
+      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.973419992389!2d-122.40243452422026!3d37.790695071981295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808b8b0e8c07%3A0xe2cae2d53bfefeb4!2s100%20Pine%20St%2C%20San%20Francisco%2C%20CA%2094111!5e0!3m2!1sen!2sus!4v1716220000000!5m2!1sen!2sus'
+    },
+    {
+      name: language === 'hi' ? 'न्यूयॉर्क वित्तीय केंद्र' : 'New York Financial Hub',
+      address: '120 Broadway, New York, NY 10271',
+      phone: '+1 (212) 555-0245',
+      hours: 'Mon-Fri: 8:30 AM - 6:00 PM',
+      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.3644400938166!2d-74.01256032402773!3d40.70792377933181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a172775f0a3%3A0x673cccd59c0be7cd!2s120%20Broadway%2C%20New%20York%2C%20NY%2010271!5e0!3m2!1sen!2sus!4v1716220100000!5m2!1sen!2sus'
+    },
+    {
+      name: language === 'hi' ? 'लंदन ग्लोबल ऑफिस' : 'London Global Office',
+      address: '30 St Mary Axe, London EC3A 8BF, UK',
+      phone: '+44 20 7555 0188',
+      hours: 'Mon-Fri: 9:00 AM - 5:30 PM',
+      mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.9078170068153!2d-0.08373372338048259!3d51.51449447181608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876034c54466b07%3A0x7d6f54c9c1b827e8!2s30%20St%20Mary%20Axe!5e0!3m2!1sen!2sus!4v1716220200000!5m2!1sen!2sus'
+    }
+  ];
 
   const handleChange = (e) => {
     setFormData({
@@ -267,6 +294,70 @@ const Contact = () => {
                     <Send size={18} />
                   </button>
                 </form>
+              </div>
+            </div>
+
+            {/* Branch Locations & Map Section */}
+            <div className="contact-map-section" style={{ marginTop: '4rem' }}>
+              <div className="section-head" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+                <span className="section-tag">{t.branch_locator_tag}</span>
+                <h2 className="section-title" style={{ fontSize: '2rem', marginTop: '0.5rem' }}>{t.branch_locator_title}</h2>
+                <p className="section-desc" style={{ maxWidth: '600px', margin: '0.5rem auto 0 auto', fontSize: '0.95rem' }}>
+                  {t.branch_locator_desc}
+                </p>
+              </div>
+
+              <div className="map-layout-grid">
+                {/* Branch details list */}
+                <div className="branch-list-panel">
+                  {branches.map((branch, idx) => (
+                    <div 
+                      key={idx} 
+                      className={`branch-card-item ${activeBranch === idx ? 'active' : ''}`}
+                      onClick={() => setActiveBranch(idx)}
+                    >
+                      <div className="branch-card-header">
+                        <div className="branch-pin-indicator">
+                          <MapPin size={18} />
+                        </div>
+                        <h4 className="branch-name-text">{branch.name}</h4>
+                      </div>
+                      
+                      <div className="branch-details-body">
+                        <p className="branch-detail-line">
+                          <strong>{language === 'hi' ? 'पता:' : 'Address:'}</strong> {branch.address}
+                        </p>
+                        <p className="branch-detail-line">
+                          <strong>{t.branch_phone}:</strong> {branch.phone}
+                        </p>
+                        <div className="branch-detail-line" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', marginTop: '0.35rem' }}>
+                          <Clock size={13} style={{ color: 'var(--ld-text-muted)', flexShrink: 0 }} />
+                          <span style={{ fontSize: '0.85rem' }}>{branch.hours}</span>
+                        </div>
+                      </div>
+
+                      <div className="branch-card-action">
+                        <span className="branch-action-text">{t.branch_view_map}</span>
+                        <ChevronRight size={14} className="branch-action-chevron" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Map iframe */}
+                <div className="branch-map-iframe-container">
+                  <iframe 
+                    title={branches[activeBranch].name}
+                    src={branches[activeBranch].mapUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="contact-map-iframe"
+                  ></iframe>
+                </div>
               </div>
             </div>
           </>

@@ -1416,3 +1416,190 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ========================================================
+    BRANCH LOCATOR & MAP SECTION STYLING
+   ======================================================== */
+.map-layout-grid {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  background: var(--ld-surface-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--ld-border);
+  border-radius: 24px;
+  padding: 1.75rem;
+  margin-top: 1rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+}
+
+.branch-list-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Custom Scrollbar for branch panel */
+.branch-list-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.branch-list-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.branch-list-panel::-webkit-scrollbar-thumb {
+  background: var(--ld-border);
+  border-radius: 10px;
+}
+
+.branch-list-panel::-webkit-scrollbar-thumb:hover {
+  background: var(--ld-text-muted);
+}
+
+.branch-card-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--ld-border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.branch-card-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--ld-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.branch-card-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(79, 70, 229, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+}
+
+.branch-card-item.active {
+  background: rgba(79, 70, 229, 0.04);
+  border-color: var(--ld-primary);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.08);
+}
+
+.branch-card-item.active::before {
+  opacity: 1;
+}
+
+.branch-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.branch-pin-indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(79, 70, 229, 0.1);
+  color: var(--ld-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.branch-card-item.active .branch-pin-indicator {
+  background: var(--ld-primary);
+  color: #ffffff;
+}
+
+.branch-name-text {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ld-text-main);
+  margin: 0;
+}
+
+.branch-details-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.branch-detail-line {
+  font-size: 0.85rem;
+  color: var(--ld-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.branch-detail-line strong {
+  color: var(--ld-text-main);
+}
+
+.branch-card-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--ld-border);
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ld-primary);
+  transition: all 0.2s ease;
+}
+
+.branch-action-chevron {
+  transition: transform 0.2s ease;
+}
+
+.branch-card-item:hover .branch-action-chevron {
+  transform: translateX(3px);
+}
+
+.branch-map-iframe-container {
+  height: 480px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--ld-border);
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.contact-map-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: grayscale(10%) contrast(100%);
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 992px) {
+  .map-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .branch-list-panel {
+    max-height: 300px;
+  }
+  
+  .branch-map-iframe-container {
+    height: 350px;
+  }
+}
