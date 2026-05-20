@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1779257557123",
+    "name": "Admin User",
+    "email": "admin@gmail.com",
+    "password": "$2b$10$xWqX2Kepx.RXpTAWCssOZetXfD2MZ/4N62onNjlKCf2Fl8YlmcSX2",
+    "role": "Admin",
+    "permissions": {
+      "view_dashboard": true,
+      "manage_tx": true,
+      "manage_cards": true,
+      "manage_loans": true,
+      "manage_services": true,
+      "manage_users": true
+    }
+  },
+  {
+    "id": "1779258527014",
+    "name": "Test User",
+    "email": "test@gmail.com",
+    "password": "$2b$10$U.QNyxQVXg0iF9GWl61BKe8NBqtq6YtzM4N0M5fxIE7Z2/iLWROr.",
+    "role": "Viewer",
+    "permissions": {
+      "view_dashboard": true,
+      "manage_tx": false,
+      "manage_cards": false,
+      "manage_loans": false,
+      "manage_services": false,
+      "manage_users": false
+    }
+  },
+  {
+    "id": "1779268817270",
+    "name": "new",
+    "email": "new@gmail.com",
+    "password": "$2b$10$LxiGPskKzLVghozE1RUr3OVGIsJhTfkF7eiMaVNSlouLrDrK8s.R2",
+    "role": "Viewer",
+    "permissions": {
+      "view_dashboard": true,
+      "manage_tx": false,
+      "manage_cards": false,
+      "manage_loans": false,
+      "manage_services": false,
+      "manage_users": false
+    }
+  }
+]
