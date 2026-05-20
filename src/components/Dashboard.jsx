@@ -2002,8 +2002,16 @@ const Dashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {users.map((user) => (
-                      <tr key={user.id}>
+                    {users
+                      .filter(user => 
+                        !searchQuery ||
+                        (user.name || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        (user.email || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        (user.role || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        (user.id || '').toString().toLowerCase().includes(searchQuery.toLowerCase())
+                      )
+                      .map((user) => (
+                        <tr key={user.id}>
                         <td style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                           <div style={{
                             width: '36px',
