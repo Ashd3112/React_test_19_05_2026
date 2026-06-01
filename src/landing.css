@@ -113,6 +113,7 @@
 .landing-logo span {
   background: linear-gradient(135deg, var(--ld-text-main) 30%, var(--ld-primary) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -244,6 +245,7 @@
   margin-bottom: 1.5rem;
   background: linear-gradient(135deg, var(--ld-text-main) 40%, var(--ld-primary) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -973,6 +975,7 @@
   margin-bottom: 1rem;
   background: linear-gradient(135deg, #fff 50%, var(--ld-primary) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -1257,6 +1260,7 @@
   color: var(--ld-primary);
   background: linear-gradient(135deg, var(--ld-primary) 40%, var(--ld-secondary) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.25rem;
 }
