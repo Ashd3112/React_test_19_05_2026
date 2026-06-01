@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const { readUsers, writeUsers } = require('./db');
+const { readUsers, writeUsers, readApplications, writeApplications } = require('./db');
 
 const app = express();
 
@@ -207,6 +207,36 @@ app.put('/api/users/:id/permissions', requireRole(['Admin']), (req, res) => {
   } catch (err) {
     console.error('Error updating user permissions:', err);
     res.status(500).json({ error: 'Server error updating user permissions' });
+  }
+});
+
+// Route: Submit application for a banking product
+app.post('/api/applications', (req, res) => {
+  try {
+    const { name, email, phone, product, income } = req.body;
+
+    if (!name || !email || !phone || !product) {
+      return res.status(400).json({ error: 'Name, email, phone, and product are required.' });
+    }
+
+    const apps = readApplications();
+    const newApp = {
+      id: Date.now().toString(),
+      name,
+      email,
+      phone,
+      product,
+      income: income || 'Not Specified',
+      submittedAt: new Date().toISOString()
+    };
+
+    apps.push(newApp);
+    writeApplications(apps);
+
+    res.status(201).json({ message: 'Application submitted successfully', application: newApp });
+  } catch (err) {
+    console.error('Error saving application:', err);
+    res.status(500).json({ error: 'Server error saving application' });
   }
 });
 

@@ -191,7 +191,32 @@ export const translations = {
     branch_locator_desc: "Locate your nearest physical branch or automated deposit kiosk with our network finder.",
     branch_hours: "Working Hours",
     branch_phone: "Phone Number",
-    branch_view_map: "View on Map"
+    branch_view_map: "View on Map",
+
+    // New BOB Portal terms
+    nav_personal: "Personal",
+    nav_business: "Business",
+    nav_agri: "Agriculture",
+    nav_about: "About Us",
+    search_placeholder: "Search banking products, rates...",
+    quick_suggestions: "Quick Suggestions",
+    whats_new_title: "What's New",
+    apply_now: "Apply Now",
+    know_more: "Know More",
+    interest_rates_title: "Key Interest Rates",
+    interest_rates_desc: "Check our highly competitive interest rates on a wide range of retail loan products.",
+    special_offers_title: "Exclusive Special Offers",
+    special_offers_desc: "Avail host of exciting instant discount deals and cashbacks on various debit and credit cards.",
+    app_promo_title: "BankDash Mobile App is now BankDash World",
+    app_promo_desc: "One stop modern mobile banking application with 100+ services and seamless user experience.",
+    download_forms: "Download Forms",
+    toll_free: "Toll Free: 1800 258 4455",
+    rates_cards: "Rates & Charges",
+    cust_care: "Customer Care",
+    product_acc: "Accounts",
+    product_loans: "Loans",
+    product_cards: "Cards",
+    product_deposits: "Deposits"
   },
   hi: {
     // Header/Navigation links
@@ -385,6 +410,31 @@ export const translations = {
     branch_locator_desc: "हमारे व्यापक नेटवर्क के साथ अपनी निकटतम शाखा या एटीएम का पता लगाएं।",
     branch_hours: "कार्य समय",
     branch_phone: "फ़ोन नंबर",
-    branch_view_map: "मानचित्र पर देखें"
+    branch_view_map: "मानचित्र पर देखें",
+
+    // New BOB Portal terms
+    nav_personal: "व्यक्तिगत",
+    nav_business: "व्यावसायिक",
+    nav_agri: "कृषि",
+    nav_about: "हमारे बारे में",
+    search_placeholder: "बैंकिंग उत्पाद, ब्याज दरें खोजें...",
+    quick_suggestions: "त्वरित सुझाव",
+    whats_new_title: "नया क्या है",
+    apply_now: "अभी आवेदन करें",
+    know_more: "अधिक जानें",
+    interest_rates_title: "मुख्य ब्याज दरें",
+    interest_rates_desc: "विभिन्न प्रकार के खुदरा ऋण उत्पादों पर हमारी अत्यधिक प्रतिस्पर्धी ब्याज दरों की जाँच करें।",
+    special_offers_title: "विशेष विशेष ऑफर",
+    special_offers_desc: "विभिन्न डेबिट और क्रेडिट कार्डों पर रोमांचक तत्काल छूट सौदों और कैशबैक का लाभ उठाएं।",
+    app_promo_title: "बैंकडैश मोबाइल ऐप अब BankDash World है",
+    app_promo_desc: "100+ सेवाओं और सहज उपयोगकर्ता अनुभव के साथ वन स्टॉप आधुनिक मोबाइल बैंकिंग एप्लिकेशन।",
+    download_forms: "फॉर्म डाउनलोड करें",
+    toll_free: "टोल फ्री: 1800 258 4455",
+    rates_cards: "दरें और शुल्क",
+    cust_care: "ग्राहक सेवा",
+    product_acc: "खाते",
+    product_loans: "ऋण",
+    product_cards: "कार्ड",
+    product_deposits: "जमा राशि"
   }
 };
