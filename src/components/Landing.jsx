@@ -32,11 +32,20 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../App';
 import { translations } from '../utils/translations';
+import QRCode from 'qrcode';
 import '../landing.css';
 
 const Landing = () => {
   const { isLoggedIn, user, visitCount, language, setLanguage } = useAuth();
   const t = translations[language] || translations.en;
+
+  // Local QR code state
+  const [qrCodeUrl, setQrCodeUrl] = useState('');
+  useEffect(() => {
+    QRCode.toDataURL('https://bankdash.com/install-app', { margin: 1, width: 150 })
+      .then(url => setQrCodeUrl(url))
+      .catch(err => console.error(err));
+  }, []);
 
   // Search state & suggestion logic
   const [searchQuery, setSearchQuery] = useState('');
@@ -599,7 +608,7 @@ const Landing = () => {
           <div className="rate-card-item cursor-pointer" onClick={() => handleRateCardClick(7.20, 50000, "Home Loan")}>
             <div className="rate-card-head">
               <Landmark size={20} color="var(--ld-primary)" />
-              <h5>{language === 'en' ? "Baroda Home Loan" : "बड़ौदा होम लोन"}</h5>
+              <h5>{language === 'en' ? "Home Loan" : "होम लोन"}</h5>
             </div>
             <div className="rate-card-body">
               <span className="rate-number">7.20% <span className="rate-suffix">p.a.</span></span>
@@ -611,7 +620,7 @@ const Landing = () => {
           <div className="rate-card-item cursor-pointer" onClick={() => handleRateCardClick(7.80, 20000, "Car Loan")}>
             <div className="rate-card-head">
               <Zap size={20} color="var(--ld-secondary)" />
-              <h5>{language === 'en' ? "Baroda Car Loan" : "बड़ौदा कार लोन"}</h5>
+              <h5>{language === 'en' ? "Car Loan" : "कार लोन"}</h5>
             </div>
             <div className="rate-card-body">
               <span className="rate-number">7.80% <span className="rate-suffix">p.a.</span></span>
@@ -784,13 +793,17 @@ const Landing = () => {
               <h3>{t.app_promo_title}</h3>
               <p>{t.app_promo_desc}</p>
               <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginTop: '1.5rem' }}>
-                <div style={{ background: '#fff', padding: '0.5rem', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {/* Embedded mock QR code */}
-                  <div style={{ width: '80px', height: '80px', background: '#000', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '4px', padding: '4px', borderRadius: '4px' }}>
-                    {Array.from({ length: 16 }).map((_, i) => (
-                      <div key={i} style={{ background: i % 3 === 0 || i % 5 === 0 ? '#fff' : '#000' }}></div>
-                    ))}
-                  </div>
+                <div style={{ background: '#fff', padding: '0.6rem', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.08)' }}>
+                  {/* Local generated real QR code image */}
+                  {qrCodeUrl ? (
+                    <img 
+                      src={qrCodeUrl} 
+                      alt="Scan QR code to install BankDash" 
+                      style={{ width: '80px', height: '80px', display: 'block', imageRendering: 'pixelated' }} 
+                    />
+                  ) : (
+                    <div className="premium-spinner" style={{ width: '32px', height: '32px' }}></div>
+                  )}
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.5rem' }}>
                   <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>{language === 'en' ? "Scan QR code to install" : "इंस्टॉल करने के लिए क्यूआर कोड स्कैन करें"}</div>

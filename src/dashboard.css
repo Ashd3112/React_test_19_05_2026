@@ -1538,3 +1538,527 @@
 .credit-card.light .card-mini-btn:hover {
   background: rgba(52, 60, 106, 0.15);
 }
+
+/* ========================================================
+   QR SCANNER FEATURE STYLES
+   ======================================================== */
+.qr-scanner-tab {
+  animation: fadeIn 0.4s ease-out;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.scanner-container-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
+}
+
+.scanner-header-controls {
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-color);
+}
+
+.scanner-toggle-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.scanner-toggle-btn.active {
+  background: var(--accent-primary);
+  color: white;
+}
+
+.camera-selector-select {
+  margin-left: auto;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: white;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  outline: none;
+  font-weight: 500;
+}
+
+.webcam-viewport {
+  width: 100%;
+  height: 350px;
+  background: #0d0e12;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  margin-top: 2rem;
+  border: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.webcam-video-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Guides & laser overlay for camera */
+.scanner-overlay-guide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  z-index: 2;
+  border: 2px dashed rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+.corner-guide {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 4px solid #10b981;
+  box-sizing: border-box;
+}
+
+.corner-guide.top-left {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+  border-top-left-radius: 8px;
+}
+
+.corner-guide.top-right {
+  top: -2px;
+  right: -2px;
+  border-left: none;
+  border-bottom: none;
+  border-top-right-radius: 8px;
+}
+
+.corner-guide.bottom-left {
+  bottom: -2px;
+  left: -2px;
+  border-right: none;
+  border-top: none;
+  border-bottom-left-radius: 8px;
+}
+
+.corner-guide.bottom-right {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+  border-bottom-right-radius: 8px;
+}
+
+.scanner-laser-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #10b981, transparent);
+  box-shadow: 0 0 8px #10b981;
+  animation: scanningLaser 2s linear infinite;
+  z-index: 3;
+}
+
+@keyframes scanningLaser {
+  0% { top: 0%; }
+  50% { top: 100%; }
+  100% { top: 0%; }
+}
+
+.scanner-loader-overlay {
+  position: absolute;
+  inset: 0;
+  background: #0d0e12;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.premium-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid rgba(57, 106, 255, 0.15);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.scanner-status-footer {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  background: rgba(57, 106, 255, 0.05);
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  margin-top: auto;
+}
+
+/* Drag-Drop Zone */
+.upload-dropzone-wrapper {
+  width: 100%;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.dropzone-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  border: 2px dashed var(--border-color);
+  border-radius: 18px;
+  padding: 2.5rem 1.5rem;
+  background: rgba(0,0,0,0.01);
+  transition: all 0.2s ease;
+}
+
+.dropzone-label:hover {
+  background: rgba(57, 106, 255, 0.03);
+  border-color: var(--accent-primary);
+}
+
+.upload-icon-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(57, 106, 255, 0.08);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.dropzone-label h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.dropzone-label p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.file-formats-label {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Steps List */
+.instruction-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.step-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.step-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(57, 106, 255, 0.08);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.step-item h5 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.25rem 0;
+}
+
+.step-item p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* My QR Envelope (Realistic Credit Card Style wrapper) */
+.premium-qr-envelope {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  border-radius: 24px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 20px 40px rgba(30, 27, 75, 0.25);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.premium-qr-envelope::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.qr-envelope-chip {
+  width: 36px;
+  height: 28px;
+  background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+  border-radius: 6px;
+  margin-bottom: 1.25rem;
+  align-self: flex-start;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.qr-envelope-logo-brand {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.qr-code-canvas-frame {
+  background: white;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.generated-qr-image {
+  width: 180px;
+  height: 180px;
+  display: block;
+}
+
+.qr-envelope-holder-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+.envelope-holder-lbl {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.2rem;
+}
+
+.envelope-holder-val {
+  font-size: 0.88rem;
+  color: white;
+  font-weight: 600;
+}
+
+/* Pay Slideout Drawer Modal overlay */
+.payment-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.payment-drawer-container {
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 -15px 40px rgba(0,0,0,0.15);
+  transform: translateY(0);
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.drawer-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.drawer-badge-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(57, 106, 255, 0.08);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drawer-close-btn {
+  background: rgba(0,0,0,0.03);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.drawer-close-btn:hover {
+  background: rgba(0,0,0,0.08);
+  color: var(--text-primary);
+}
+
+.drawer-breakdown-box {
+  background: rgba(0,0,0,0.02);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border: 1px solid var(--border-color);
+  margin-bottom: 1.25rem;
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.breakdown-item .lbl {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.breakdown-item .val {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.drawer-success-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 0;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.success-lottie-mock {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+.drawer-success-view h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #343c6a;
+  margin-bottom: 0.5rem;
+}
+
+.drawer-success-view p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.input-helper-note {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-top: 0.35rem;
+  display: block;
+}
+

@@ -28,8 +28,10 @@ import {
   Edit2,
   Trash2,
   Globe,
-  X
+  X,
+  Scan
 } from 'lucide-react';
+import QrScannerTab from './QrScannerTab';
 import '../dashboard.css';
 
 const quickTransferUsers = [
@@ -2102,6 +2104,20 @@ const Dashboard = () => {
               </div>
             </div>
           )}
+
+          {activeTab === 'Scan & Pay' && (
+            <QrScannerTab 
+              userSession={userSession}
+              cards={cards}
+              onAddTransaction={(newTx) => setTransactions(prev => [newTx, ...prev])}
+              onUpdateCardBalance={(cardId, newBalance) => {
+                setCards(prev => prev.map(c => c.id === cardId ? { ...c, balance: newBalance } : c));
+              }}
+              onAddNotification={(newNotification) => {
+                setNotifications(prev => [newNotification, ...prev]);
+              }}
+            />
+          )}
         </div>
       </main>
 
@@ -2524,6 +2540,7 @@ const Dashboard = () => {
 const menuItems = [
   { name: 'Dashboard', icon: LayoutDashboard },
   { name: 'Transactions', icon: ArrowLeftRight },
+  { name: 'Scan & Pay', icon: Scan },
   { name: 'Accounts', icon: User },
   { name: 'Investments', icon: LineChart },
   { name: 'Credit Cards', icon: CreditCard },
