@@ -77,6 +77,28 @@ In the root `package.json`, you can run:
 - Frontend: `npm run dev`
 - Backend: `npm run server`
 
+## End-to-End Testing (Playwright)
+
+We use Playwright for end-to-end (E2E) testing. The tests automatically start the development web server during execution.
+
+### Setup
+
+Ensure Playwright browsers are installed:
+```bash
+npx playwright install --with-deps
+```
+
+### Running Tests
+
+- **Headless Mode**: Run tests across Chromium, Firefox, and WebKit:
+  ```bash
+  npm run test:e2e
+  ```
+- **UI Mode**: Run tests in Playwright's interactive UI mode:
+  ```bash
+  npm run test:e2e:ui
+  ```
+
 ## Tech Stack
 
 - **Frontend**: React 18, Vite, React Router DOM, Lucide React (Icons).
